@@ -56,20 +56,6 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
   Curve forwardingCurve = Curves.elasticOut;
   Curve reversingCurve = Curves.easeIn;
 
-  void onPageChanged(int page) {
-    setState(() {
-      this.pageIndex = page;
-    });
-  }
-
-  void onTabTapped(int index) {
-    this.pageController.animateToPage(
-          index,
-          duration: Duration(milliseconds: 1000),
-          curve: Curves.fastLinearToSlowEaseIn,
-        );
-  }
-
   List<IconData> listOfIcons = [
     FontAwesomeIcons.gamepad,
     FontAwesomeIcons.searchengin,
@@ -80,6 +66,18 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
 
   int pageIndex = 0;
   late PageController pageController;
+
+  void onPageChanged(int page) {
+    setState(() {
+      this.pageIndex = page;
+    });
+  }
+
+  void onTabTapped(int index) {
+    this.pageController.animateToPage(index,
+        duration: Duration(milliseconds: 1000),
+        curve: Curves.fastLinearToSlowEaseIn);
+  }
 
   @override
   void initState() {
@@ -350,7 +348,7 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
